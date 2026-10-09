@@ -5,6 +5,8 @@ export const LOJA = {
   whatsapp: "https://wa.me/message/46DJAV7J3JPIK1",
   /** número do WhatsApp da loja (55 + DDD + número), usado para abrir a conversa já com a mensagem escrita */
   telefone: "5524992207256",
+  /** endereço público do site (vai nas mensagens do WhatsApp e nos cartões de prévia). Se mudar de domínio, troque aqui. */
+  site: "https://vhconceptstore.netlify.app",
   telefoneFormatado: "(24) 99220-7256",
   cidade: "Volta Redonda, RJ",
 };

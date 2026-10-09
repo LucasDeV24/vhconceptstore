@@ -12,8 +12,8 @@ export function abrirWhatsApp(mensagem: string) {
   window.open(linkWhatsApp(mensagem), "_blank", "noopener");
 }
 
-/** Endereço da página do produto neste site (a loja abre e vê foto, cor e preço na hora). */
-export const urlDoProduto = (id: string) => `${window.location.origin}${import.meta.env.BASE_URL}produto/${id}`;
+/** Endereço público da página do produto: no WhatsApp ele vira um cartão com foto, nome e preço. */
+export const urlDoProduto = (id: string) => `${LOJA.site}/produto/${id}`;
 
 export function descreverProduto(p: Produto) {
   const condicao = p.categoria === "acessorio" ? "" : CONDICOES[p.condicao].rotulo;
@@ -26,14 +26,15 @@ export function mensagemInteresse(p: Produto, quantidade = 1) {
   if (!p.sobConsulta) {
     linhas.push(`💰 À vista: ${brl(p.preco)}`, `💳 Ou em até ${p.parcelas.quantidade}x de ${brlCentavos(p.parcelas.valor)} no cartão (com juros)`);
   }
-  linhas.push(`🔗 ${urlDoProduto(p.id)}`, "", p.sobConsulta ? "Qual o valor e a disponibilidade?" : "Ainda está disponível?");
+  linhas.push("", p.sobConsulta ? "Qual o valor e a disponibilidade?" : "Ainda está disponível?", "", urlDoProduto(p.id));
   return linhas.join("\n");
 }
 
 export function mensagemPedido(itens: { produto: Produto; quantidade: number }[], total: number, parcela: number, n: number) {
   const linhas = itens.flatMap(({ produto, quantidade }) => [
     `📱 ${quantidade}x ${descreverProduto(produto)} — ${brl(produto.preco)} à vista`,
-    `🔗 ${urlDoProduto(produto.id)}`,
+    urlDoProduto(produto.id),
+    "",
   ]);
   return [
     `Olá, ${LOJA.nome}! Quero finalizar este pedido:`,

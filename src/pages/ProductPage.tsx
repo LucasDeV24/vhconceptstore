@@ -89,6 +89,9 @@ export default function ProductPage() {
   const { avisar } = useUI();
   const [qtd, setQtd] = useState(1);
   useEffect(() => setQtd(1), [id]);
+  useEffect(() => {
+    if (p) document.title = `${[p.nome, p.armazenamento, p.cor.nome].filter(Boolean).join(" ")} | VH Concept Store`;
+  }, [p]);
 
   if (carregando && !p) {
     return (
