@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { FAQ } from "@/data/conteudo";
-import { LOJA } from "@/data/conteudo";
 import { Icon } from "@/components/ui/Icon";
+import { linkWhatsApp } from "@/services/whatsapp";
 
 export function Faq() {
   const [aberto, setAberto] = useState<number | null>(0);
@@ -10,7 +10,7 @@ export function Faq() {
       <div className="faq-side">
         <h2>Perguntas frequentes</h2>
         <p>Não achou sua dúvida? A gente responde rápido.</p>
-        <a href={LOJA.whatsapp} target="_blank" rel="noopener" className="btn btn-ghost">
+        <a href={linkWhatsApp()} target="_blank" rel="noopener" className="btn btn-ghost">
           <Icon nome="whatsapp" tamanho={18} /> Perguntar no WhatsApp
         </a>
       </div>

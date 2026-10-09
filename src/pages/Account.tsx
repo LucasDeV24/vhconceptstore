@@ -1,9 +1,9 @@
 import { Link } from "react-router-dom";
-import { LOJA } from "@/data/conteudo";
 import { useCart } from "@/context/CartContext";
 import { useFavoritos } from "@/context/FavoritesContext";
 import { useUI } from "@/context/UIContext";
 import { Icon } from "@/components/ui/Icon";
+import { linkWhatsApp } from "@/services/whatsapp";
 
 export default function Account() {
   const { quantidadeTotal } = useCart();
@@ -15,7 +15,7 @@ export default function Account() {
       <h1>Minha conta</h1>
       <p className="muted">Seus pedidos são fechados e acompanhados direto com a gente pelo WhatsApp.</p>
       <div className="acct">
-        <a href={LOJA.whatsapp} target="_blank" rel="noopener" className="acct-card">
+        <a href={linkWhatsApp()} target="_blank" rel="noopener" className="acct-card">
           <Icon nome="whatsapp" tamanho={26} />
           <b>Acompanhar pedido</b>
           <small>Status e rastreio</small>

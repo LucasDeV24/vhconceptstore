@@ -40,4 +40,4 @@ O script recorta o aparelho, padroniza o tamanho, converte para WebP e gera `src
 
 ## Finalizar a compra
 
-O carrinho monta o pedido e abre o WhatsApp da loja. Como o link `wa.me/message/...` não aceita texto pronto, a mensagem é copiada para a área de transferência e o cliente só cola. Se você tiver o número, troque `abrirWhatsApp` em `src/services/whatsapp.ts` por `https://wa.me/55DDDNUMERO?text=...` e a mensagem já chega escrita.
+O botão "Comprar agora" abre o WhatsApp da loja (`wa.me/NÚMERO?text=...`) já com o iPhone escolhido, a cor, o valor à vista, a parcela e o link da página dele. O carrinho faz o mesmo com todos os aparelhos. O número fica em `LOJA.telefone` (`src/data/conteudo.ts`) e as mensagens em `src/services/whatsapp.ts`.

@@ -3,7 +3,7 @@ import { Link, useNavigate, useParams } from "react-router-dom";
 import { useProduto } from "@/hooks/useProdutos";
 import { useComprar } from "@/hooks/useComprar";
 import { useUI } from "@/context/UIContext";
-import { abrirWhatsApp, descreverProduto } from "@/services/whatsapp";
+import { abrirWhatsApp, descreverProduto, urlDoProduto } from "@/services/whatsapp";
 import { useCep } from "@/hooks/useCep";
 import { api } from "@/services/api";
 import { variacoesDe } from "@/services/catalogo";
@@ -143,9 +143,12 @@ export default function ProductPage() {
               <span>As fotos mostram o modelo. Quer ver <b>esta unidade</b>?</span>
               <button
                 type="button"
-                onClick={async () => {
-                  const ok = await abrirWhatsApp(`Olá! Pode me mandar fotos reais deste aparelho? ${descreverProduto(p)} [ref ${p.id}]`);
-                  if (ok) avisar("Mensagem copiada", "Cole no WhatsApp para pedir as fotos reais.");
+                onClick={() => {
+                  abrirWhatsApp(`Olá! Pode me mandar fotos reais deste aparelho?
+
+📱 ${descreverProduto(p)}
+🔗 ${urlDoProduto(p.id)}`);
+                  avisar("Abrindo o WhatsApp", "O pedido de fotos já vai escrito.");
                 }}
               >
                 Pedir fotos reais
@@ -204,8 +207,8 @@ export default function ProductPage() {
                 <button type="button" onClick={() => setQtd((q) => Math.min(p.estoque, q + 1))} aria-label="Aumentar"><Icon nome="mais" tamanho={16} /></button>
               </div>
             )}
-            <button type="button" className="btn btn-dark btn-lg btn-grow" disabled={esgotado} onClick={() => comprar(p, { abrir: true, quantidade: qtd })}>
-              Comprar agora
+            <button type="button" className="btn btn-dark btn-lg btn-grow" disabled={esgotado} onClick={() => comprar(p, { direto: true, quantidade: qtd })}>
+              <Icon nome="whatsapp" tamanho={20} /> Comprar agora
             </button>
           </div>
           <button type="button" className="btn btn-ghost btn-lg btn-block" disabled={esgotado} onClick={() => comprar(p, { quantidade: qtd })}>
@@ -251,7 +254,7 @@ export default function ProductPage() {
           <b>{p.sobConsulta ? "Consulte o valor" : brl(p.preco)}</b>
           <small>{p.sobConsulta ? "chegou agora" : `à vista · ${p.parcelas.quantidade}x de ${brlCentavos(p.parcelas.valor)}`}</small>
         </div>
-        <button type="button" className="btn btn-dark" disabled={esgotado} onClick={() => comprar(p, { abrir: true, quantidade: qtd })}>
+        <button type="button" className="btn btn-dark" disabled={esgotado} onClick={() => comprar(p, { direto: true, quantidade: qtd })}>
           {esgotado ? "Esgotado" : p.sobConsulta ? "Consultar" : "Comprar agora"}
         </button>
       </div>

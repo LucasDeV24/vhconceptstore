@@ -37,7 +37,7 @@ export function Hero() {
           </div>
 
           <div className="hero-cta">
-            <button type="button" className="btn btn-dark btn-lg" onClick={() => comprar(p, { abrir: true })}>
+            <button type="button" className="btn btn-dark btn-lg" onClick={() => comprar(p, { direto: true })}>
               Comprar agora <Icon nome="seta" tamanho={18} />
             </button>
             <Link to="/loja?condicao=novo" className="btn btn-ghost btn-lg">Ver modelos</Link>

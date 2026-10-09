@@ -19,9 +19,9 @@ export function CartDrawer() {
     return () => window.removeEventListener("keydown", esc);
   }, [carrinhoAberto, fecharCarrinho]);
 
-  const finalizar = async () => {
-    const copiou = await abrirWhatsApp(mensagemPedido(linhas, subtotal, valorParcela, maxParcelas));
-    avisar(copiou ? "Pedido copiado" : "Abrindo o WhatsApp", copiou ? "Cole a mensagem na conversa para finalizar." : "Envie os itens do carrinho na conversa.");
+  const finalizar = () => {
+    abrirWhatsApp(mensagemPedido(linhas, subtotal, valorParcela, maxParcelas));
+    avisar("Abrindo o WhatsApp", "Seu pedido já vai escrito na conversa.");
   };
 
   return (

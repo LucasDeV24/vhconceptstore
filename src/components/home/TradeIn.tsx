@@ -45,11 +45,11 @@ export function TradeIn() {
 
   const alvo = api.produtoPorId("iphone-17-novo-256gb-preto");
 
-  const enviar = async () => {
+  const enviar = () => {
     if (!resultado) return;
     const msg = `Olá! Quero dar meu iPhone na troca: ${modelo} ${gb}, ${estado.toLowerCase()}, bateria ${bateria}, caixa: ${caixa.toLowerCase()}. A simulação no site deu entre ${brl(resultado.min)} e ${brl(resultado.max)}. Podem avaliar?`;
-    const ok = await abrirWhatsApp(msg);
-    if (ok) avisar("Simulação copiada", "Cole a mensagem na conversa do WhatsApp.");
+    abrirWhatsApp(msg);
+    avisar("Abrindo o WhatsApp", "Sua simulação já vai escrita na conversa.");
   };
 
   return (

@@ -2,6 +2,7 @@ import { Link, useLocation } from "react-router-dom";
 import { LOJA } from "@/data/conteudo";
 import { Icon } from "@/components/ui/Icon";
 import { Faq } from "@/components/home/Faq";
+import { linkWhatsApp } from "@/services/whatsapp";
 
 // Textos-base. Revise com as políticas reais da loja (e um advogado, no caso de Privacidade e Termos).
 const PAGINAS: Record<string, { titulo: string; blocos: { h: string; p: string }[] }> = {
@@ -62,7 +63,7 @@ export default function InfoPage() {
             </section>
           ))}
         </div>
-        <a href={LOJA.whatsapp} target="_blank" rel="noopener" className="btn btn-wpp">
+        <a href={linkWhatsApp()} target="_blank" rel="noopener" className="btn btn-wpp">
           <Icon nome="whatsapp" tamanho={18} /> Falar com a loja
         </a>
       </div>

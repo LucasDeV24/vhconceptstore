@@ -2,6 +2,7 @@ import { Link } from "react-router-dom";
 import { LOJA } from "@/data/conteudo";
 import { asset } from "@/utils/base";
 import { Icon } from "@/components/ui/Icon";
+import { linkWhatsApp } from "@/services/whatsapp";
 
 const PAGAMENTOS = ["PIX", "Visa", "Mastercard", "Elo", "Amex", "Hipercard"];
 
@@ -16,7 +17,7 @@ export function Footer() {
               <span className="logo-sub">concept<br />store</span>
             </Link>
             <p>iPhones lacrados e seminovos, testados e garantidos. {LOJA.cidade} e região, com envio para todo o Brasil.</p>
-            <a href={LOJA.whatsapp} target="_blank" rel="noopener" className="btn btn-wpp btn-sm">
+            <a href={linkWhatsApp()} target="_blank" rel="noopener" className="btn btn-wpp btn-sm">
               <Icon nome="whatsapp" tamanho={18} /> Falar no WhatsApp
             </a>
           </div>
@@ -32,7 +33,7 @@ export function Footer() {
             <div>
               <h4>Atendimento</h4>
               <Link to="/suporte">Central de suporte</Link>
-              <a href={LOJA.whatsapp} target="_blank" rel="noopener">WhatsApp</a>
+              <a href={linkWhatsApp()} target="_blank" rel="noopener">WhatsApp</a>
               <Link to="/conta">Meus pedidos</Link>
             </div>
             <div>

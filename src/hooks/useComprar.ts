@@ -1,19 +1,18 @@
 import { useCart } from "@/context/CartContext";
 import { useUI } from "@/context/UIContext";
 import type { Produto } from "@/types";
-import { abrirWhatsApp, descreverProduto } from "@/services/whatsapp";
+import { abrirWhatsApp, descreverProduto, mensagemInteresse } from "@/services/whatsapp";
 
 /** Adiciona ao carrinho com feedback. `abrir` = comportamento de "Comprar agora". */
 export function useComprar() {
   const { adicionar, linhas } = useCart();
   const { abrirCarrinho, avisar } = useUI();
 
-  return (produto: Produto, opcoes: { abrir?: boolean; quantidade?: number } = {}) => {
-    // sem preço na tabela: em vez de carrinho, leva direto para o WhatsApp
-    if (produto.sobConsulta) {
-      void abrirWhatsApp(`Olá! Quero saber o valor e a disponibilidade do ${descreverProduto(produto)}.`).then((ok) => {
-        if (ok) avisar("Mensagem copiada", "Cole no WhatsApp para consultar o valor.");
-      });
+  return (produto: Produto, opcoes: { abrir?: boolean; quantidade?: number; direto?: boolean } = {}) => {
+    // sem preço na tabela (ou "Comprar agora"): em vez de carrinho, abre o WhatsApp já com este iPhone
+    if (produto.sobConsulta || opcoes.direto) {
+      abrirWhatsApp(mensagemInteresse(produto, opcoes.quantidade ?? 1));
+      avisar("Abrindo o WhatsApp", "O iPhone que você escolheu já vai escrito na conversa.");
       return;
     }
     const noCarrinho = linhas.find((l) => l.produto.id === produto.id)?.quantidade ?? 0;
