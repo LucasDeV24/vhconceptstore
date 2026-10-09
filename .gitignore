@@ -6,3 +6,6 @@ dist
 # pastas locais (não vão para o GitHub)
 .claude
 _versao-antiga
+
+# Local Netlify folder
+.netlify
