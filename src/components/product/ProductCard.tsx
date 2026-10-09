@@ -57,7 +57,7 @@ export function ProductCard({ item }: { item: ItemVitrine }) {
         )}
 
         <div className="card-top">
-          <GradeBadge condicao={p.condicao} />
+          <GradeBadge condicao={p.condicao} acessorio={p.categoria === "acessorio"} />
           {p.categoria === "iphone" && p.condicao === "seminovo" && <span className="tested">Testado e garantido</span>}
         </div>
 

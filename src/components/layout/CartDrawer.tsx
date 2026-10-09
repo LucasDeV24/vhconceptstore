@@ -53,7 +53,7 @@ export function CartDrawer() {
                   <div className="cart-info">
                     <Link to={`/produto/${p.id}`} onClick={fecharCarrinho}><b>{p.nome}</b></Link>
                     <small className="muted">{[p.armazenamento, p.cor.nome].filter(Boolean).join(" · ")}</small>
-                    <GradeBadge condicao={p.condicao} dica={false} />
+                    <GradeBadge condicao={p.condicao} dica={false} acessorio={p.categoria === "acessorio"} />
                     <div className="cart-row">
                       <div className="stepper" aria-label="Quantidade">
                         <button type="button" aria-label="Diminuir" onClick={() => alterarQuantidade(p.id, quantidade - 1)}>

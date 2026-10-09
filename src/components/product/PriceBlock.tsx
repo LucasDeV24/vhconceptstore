@@ -29,7 +29,10 @@ export function PriceBlock({ produto: p, tamanho = "md" }: Props) {
       <div className="price-label">À vista</div>
       <div className="price-now">{brl(p.preco)}</div>
       <div className="price-inst">
-        ou em até {p.parcelas.quantidade}x de <b>{brlCentavos(p.parcelas.valor)}</b> <span className="com-juros">com juros</span>
+        ou em até {p.parcelas.quantidade}x de{" "}
+        <span className="nw">
+          <b>{brlCentavos(p.parcelas.valor)}</b> <span className="com-juros">com juros</span>
+        </span>
       </div>
     </div>
   );

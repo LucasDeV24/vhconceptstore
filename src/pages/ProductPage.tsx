@@ -156,7 +156,7 @@ export default function ProductPage() {
 
         <div className="pdp-info">
           <div className="pdp-badges">
-            <GradeBadge condicao={p.condicao} completo />
+            <GradeBadge condicao={p.condicao} completo acessorio={p.categoria === "acessorio"} />
             {p.selo && <span className={`card-seal static ${p.selo === "Promoção" ? "is-off" : ""}`}>{p.selo}</span>}
             <FavButton id={p.id} nome={p.nome} />
           </div>
@@ -174,7 +174,7 @@ export default function ProductPage() {
             <div className="pdp-facts">
               <div><Icon nome="revisado" tamanho={20} /><span><small>Condição</small><b>{semi ? "Seminovo" : "Lacrado"}</b></span></div>
               <div><Icon nome="escudo" tamanho={20} /><span><small>{semi ? "Aparelho" : "Embalagem"}</small><b>{semi ? "Testado" : "Na caixa"}</b></span></div>
-              <div><Icon nome="caminhao" tamanho={20} /><span><small>Envio</small><b>Todo o Brasil</b></span></div>
+              <div><Icon nome="caminhao" tamanho={20} /><span><small>Envio</small><b>Brasil todo</b></span></div>
             </div>
           )}
 

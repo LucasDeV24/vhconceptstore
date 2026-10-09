@@ -19,7 +19,7 @@ export function OfferCard({ produto: p, destaque }: { produto: Produto; destaque
       </Link>
       <div className="offer-body">
         <div className="offer-save">Economize {brl(economia)}</div>
-        <GradeBadge condicao={p.condicao} />
+        <GradeBadge condicao={p.condicao} acessorio={p.categoria === "acessorio"} />
         <Link to={`/produto/${p.id}`}>
           <h3>{p.nome}</h3>
           <p className="muted">{[p.armazenamento, p.cor.nome].filter(Boolean).join(" · ")}</p>

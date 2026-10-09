@@ -31,7 +31,8 @@
 .price-inst b { color: var(--ink); font-weight: 600; }
 .price-now--consulta { font-size: 1.2rem; color: var(--gold-light); letter-spacing: -0.02em; }
 .price--lg .price-now--consulta { font-size: 1.9rem; }
-.tested { font-size: 0.72rem; color: var(--mut); }
+.tested { font-size: 0.72rem; color: var(--mut); white-space: nowrap; }
+.nw { white-space: nowrap; }
 .grade--seminovo { background: var(--accent-soft); color: var(--gold-light); }
 .price--lg .price-now { font-size: 2.4rem; }
 .price--lg .price-old { font-size: 0.95rem; }
@@ -68,7 +69,9 @@
 .grid { display: grid; grid-template-columns: repeat(var(--cols, 4), minmax(0, 1fr)); gap: 16px; }
 .card { position: relative; display: flex; flex-direction: column; background: var(--surface); border: 1px solid var(--line); border-radius: var(--r-lg); transition: box-shadow 0.3s, border-color 0.3s, transform 0.3s var(--ease); animation: cardin 0.45s var(--ease) both; }
 @keyframes cardin { from { opacity: 0; transform: translateY(8px); } }
-.card:hover { border-color: transparent; box-shadow: var(--sh-hover); transform: translateY(-3px); }
+@media (hover: hover) {
+  .card:hover { border-color: transparent; box-shadow: var(--sh-hover); transform: translateY(-3px); }
+}
 .card-media { position: relative; display: block; aspect-ratio: 1 / 1; margin: 8px; border-radius: 14px; background: var(--tile); overflow: hidden; }
 .card-img { position: absolute; inset: 0; padding: 4%; transition: opacity 0.45s var(--ease), transform 0.6s var(--ease); }
 @media (hover: hover) {
@@ -79,7 +82,7 @@
 .card-seal.static { position: static; }
 .card-soldout { position: absolute; inset: auto 10px 10px; text-align: center; padding: 6px; border-radius: 8px; background: rgba(18, 18, 17, 0.75); color: #fff; font-size: 0.8rem; font-weight: 600; }
 .card-body { display: flex; flex-direction: column; gap: 8px; padding: 6px 18px 18px; flex: 1; }
-.card-top { display: flex; align-items: center; gap: 8px; min-height: 24px; }
+.card-top { display: flex; align-items: center; flex-wrap: wrap; gap: 4px 8px; min-height: 24px; }
 .low { font-size: 0.74rem; font-weight: 600; color: var(--warn); }
 .card-title h3 { font-family: var(--f-ui); font-size: 1rem; font-weight: 600; letter-spacing: -0.01em; }
 .card-title p { font-size: 0.84rem; color: var(--mut); }

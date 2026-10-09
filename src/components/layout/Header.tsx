@@ -74,11 +74,15 @@ export function Header() {
   const { abrirCarrinho } = useUI();
   const [menu, setMenu] = useState(false);
   const [rolou, setRolou] = useState(false);
+  const [buscaAberta, setBuscaAberta] = useState(false);
   const [pulo, setPulo] = useState(false);
   const loc = useLocation();
   const anterior = useRef(quantidadeTotal);
 
-  useEffect(() => setMenu(false), [loc.pathname, loc.search]);
+  useEffect(() => {
+    setMenu(false);
+    setBuscaAberta(false);
+  }, [loc.pathname, loc.search]);
 
   useEffect(() => {
     const on = () => setRolou(window.scrollY > 8);
@@ -104,7 +108,7 @@ export function Header() {
   const ativo = (to: string) => (to === "/" ? loc.pathname === "/" : `${loc.pathname}${loc.search}` === to);
 
   return (
-    <header className={`hd ${rolou ? "is-scrolled" : ""}`}>
+    <header className={`hd ${rolou ? "is-scrolled" : ""} ${buscaAberta ? "busca-aberta" : ""}`}>
       <div className="hd-bar">
         <div className="wrap hd-bar-in">
           <span><Icon nome="cartao" tamanho={14} /> Parcele em até {MAX_PARCELAS}x</span>
@@ -127,6 +131,9 @@ export function Header() {
 
         <div className="hd-actions">
           <CepButton />
+          <button type="button" className="hd-ico hd-busca-m" aria-label="Buscar" aria-expanded={buscaAberta} onClick={() => setBuscaAberta((v) => !v)}>
+            <Icon nome="busca" tamanho={22} />
+          </button>
           <Link to="/favoritos" className="hd-ico" aria-label="Favoritos">
             <Icon nome="coracao" tamanho={22} />
             {ids.length > 0 && <span className="badge badge--soft">{ids.length}</span>}

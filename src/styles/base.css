@@ -158,3 +158,12 @@ select:focus, input:focus { outline: none; border-color: var(--gold); box-shadow
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after { animation-duration: 0.01ms !important; transition-duration: 0.01ms !important; }
 }
+
+/* ================= AJUSTES CELULAR (base) ================= */
+/* iPhones antigos (iOS < 16) não conhecem overflow-x: clip */
+@supports not (overflow: clip) {
+  body { overflow-x: hidden; }
+}
+@media (max-width: 820px) {
+  .main { padding-bottom: calc(80px + env(safe-area-inset-bottom)); }
+}
