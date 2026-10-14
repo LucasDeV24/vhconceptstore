@@ -53,7 +53,7 @@
 .hero-trade span { font-size: 0.82rem; color: var(--mut); }
 
 /* ================= CATEGORIES ================= */
-.cats { display: grid; grid-template-columns: repeat(9, minmax(118px, 1fr)); gap: 12px; padding: 22px 0 6px; overflow-x: auto; scroll-snap-type: x mandatory; scrollbar-width: none; }
+.cats { display: grid; grid-template-columns: repeat(7, minmax(118px, 1fr)); gap: 12px; padding: 22px 0 6px; overflow-x: auto; scroll-snap-type: x mandatory; scrollbar-width: none; }
 .cat { display: grid; justify-items: center; gap: 2px; text-align: center; scroll-snap-align: start; }
 .cat-art { position: relative; width: 100%; height: 130px; border-radius: 18px; background: var(--tile); border: 1px solid var(--line); padding: 6px; margin-bottom: 8px; transition: border-color 0.2s, box-shadow 0.3s; overflow: hidden; }
 .cat-art img { width: 100%; height: 100%; object-fit: contain; transition: transform 0.45s var(--ease); }
@@ -193,7 +193,7 @@
   .hero-semi h2 { font-size: 1.45rem; }
   .hero-semi-art { height: 230px; width: auto; }
   .round-arrow { left: auto; right: 20px; bottom: 20px; }
-  .cats { grid-template-columns: repeat(9, 112px); gap: 10px; width: 100%; padding-inline: 14px; scroll-padding-inline: 14px; }
+  .cats { grid-template-columns: repeat(7, 112px); gap: 10px; width: 100%; padding-inline: 14px; scroll-padding-inline: 14px; }
   .cat-art { height: 108px; }
   .sec { padding-top: 44px; }
   .sec-head { align-items: flex-start; flex-direction: column; gap: 10px; margin-bottom: 16px; }
