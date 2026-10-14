@@ -4,6 +4,7 @@ import { api } from "@/services/api";
 import { getModelo } from "@/data/modelos";
 import { Icon } from "@/components/ui/Icon";
 import { urlFoto } from "@/utils/fotos";
+import { asset } from "@/utils/base";
 import { brl } from "@/utils/format";
 import { useComprar } from "@/hooks/useComprar";
 
@@ -18,9 +19,7 @@ export function Hero() {
   const p = api.produtoPorId(`${MODELO_HERO}-novo-${GB_HERO.toLowerCase()}-${cor.slug}`)!;
   const comprar = useComprar();
   const semiMenor = Math.min(...api.todos().filter((x) => x.condicao === "seminovo").map((x) => x.preco));
-  const modeloSemi = getModelo("iphone-13")!;
-  const corSemi = modeloSemi.cores.find((c) => c.slug === "azul") ?? modeloSemi.cores[0];
-
+  
   return (
     <section className="hero wrap">
       <article className="hero-main">
@@ -88,7 +87,7 @@ export function Hero() {
               a partir de <b>{brl(semiMenor)}</b>
             </span>
           </div>
-          <img className="hero-semi-art" src={urlFoto(modeloSemi.id, corSemi)} alt="" loading="eager" decoding="async" />
+          <img className="hero-semi-art" src={asset("fotos/iphone-13/azul-recorte.webp")} alt="" loading="eager" decoding="async" />
           <span className="round-arrow"><Icon nome="seta" tamanho={18} /></span>
         </Link>
 
