@@ -85,7 +85,8 @@ export function Header() {
   }, [loc.pathname, loc.search]);
 
   useEffect(() => {
-    const on = () => setRolou(window.scrollY > 8);
+    // histerese: a barra dourada some e muda a altura da página; com um único limite o scroll oscilava nele e o topo tremia
+    const on = () => setRolou((r) => (r ? window.scrollY > 4 : window.scrollY > 90));
     on();
     window.addEventListener("scroll", on, { passive: true });
     return () => window.removeEventListener("scroll", on);

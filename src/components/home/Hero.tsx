@@ -46,7 +46,17 @@ export function Hero() {
 
         <div className="hero-art">
           <div className="hero-aura" aria-hidden="true" />
-          <img key={cor.slug} className="hero-photo" src={urlFoto(modelo.id, cor)} alt={`${p.nome} na cor ${cor.nome}`} loading="eager" decoding="async" />
+          {modelo.cores.map((c) => (
+            <img
+              key={c.slug}
+              className={`hero-photo ${c.slug === cor.slug ? "is-on" : ""}`}
+              src={urlFoto(modelo.id, c)}
+              alt={c.slug === cor.slug ? `${p.nome} na cor ${cor.nome}` : ""}
+              aria-hidden={c.slug === cor.slug ? undefined : true}
+              loading="eager"
+              decoding="async"
+            />
+          ))}
           <div className="hero-colors" role="radiogroup" aria-label="Cor do iPhone">
             {modelo.cores.map((c) => (
               <button

@@ -19,18 +19,18 @@
 .hero-pix b { font-size: 1.2rem; }
 .hero-cta { display: flex; gap: 10px; flex-wrap: wrap; }
 .hero-cta .btn-ghost { border-color: var(--line-strong); }
-.hero-art { position: relative; height: 430px; display: grid; place-items: center; }
+.hero-art { position: relative; contain: layout; height: 430px; display: grid; place-items: center; }
 .hero-aura { position: absolute; inset: 6% 4% 12%; border-radius: 50%; background: radial-gradient(circle, rgba(212, 175, 55, 0.34) 0%, rgba(212, 175, 55, 0.08) 45%, transparent 68%); filter: blur(10px); animation: aura 6s ease-in-out infinite; }
-.hero-photo { position: relative; z-index: 1; width: min(100%, 440px); height: auto; max-height: 100%; object-fit: contain; filter: drop-shadow(0 30px 40px rgba(0, 0, 0, 0.6)); animation: float 7s ease-in-out infinite, photoin 0.5s var(--ease) both; }
+.hero-photo { position: relative; z-index: 1; width: min(100%, 440px); height: auto; max-height: 100%; object-fit: contain; filter: drop-shadow(0 30px 40px rgba(0, 0, 0, 0.6)); grid-area: 1 / 1; visibility: hidden; pointer-events: none; animation: float 7s ease-in-out infinite; }
+.hero-photo.is-on { visibility: visible; }
 @keyframes aura { 50% { opacity: 0.65; transform: scale(1.06); } }
 @keyframes photoin { from { opacity: 0; transform: translateY(10px) scale(0.98); } }
 @keyframes float { 50% { translate: 0 -10px; } }
 .hero-colors { position: absolute; z-index: 2; left: 50%; bottom: -6px; transform: translateX(-50%); display: flex; align-items: center; gap: 8px; padding: 8px 14px; border-radius: 99px; background: rgba(10, 10, 10, 0.78); backdrop-filter: blur(8px); border: 1px solid var(--gold-line); font-size: 0.78rem; font-weight: 600; color: var(--ink); white-space: nowrap; }
-.hero-colors button { position: relative; width: 18px; height: 18px; border-radius: 50%; background: var(--c); box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.3); transition: transform 0.2s var(--ease); }
+.hero-colors button { position: relative; flex: none; width: 18px; height: 18px; border-radius: 50%; background: var(--c); box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.3); transition: transform 0.2s var(--ease); }
 .hero-colors button::after { content: ""; position: absolute; inset: -4px; border-radius: 50%; border: 1.5px solid transparent; transition: border-color 0.2s; }
-.hero-colors button:hover { transform: scale(1.12); }
 .hero-colors button.is-on::after { border-color: var(--gold); }
-.hero-colors span { margin-left: 4px; min-width: 62px; color: var(--gold-light); }
+.hero-colors span { margin-left: 4px; width: 118px; text-align: left; overflow: hidden; text-overflow: ellipsis; color: var(--gold-light); }
 
 .hero-side { display: grid; grid-template-rows: 1fr auto; gap: 16px; }
 .hero-semi { position: relative; display: block; padding: 32px; border-radius: var(--r-xl); background: radial-gradient(circle at 85% 82%, rgba(212, 175, 55, 0.22), transparent 58%), #0e0d0a; color: var(--ink); border: 1px solid var(--gold-line); overflow: hidden; min-height: 340px; transition: transform 0.3s var(--ease); }
