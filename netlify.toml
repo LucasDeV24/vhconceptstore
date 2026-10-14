@@ -6,11 +6,8 @@
 [build.environment]
   NODE_VERSION = "22"
 
-# Qualquer endereço abre o site (links diretos de produto, etc.), com status 200
-[[redirects]]
-  from = "/*"
-  to = "/index.html"
-  status = 200
+# Sem "/* -> /index.html": cada página do site vira um arquivo no build (scripts/gerar-paginas.mjs),
+# e endereços que não existem recebem a página 404.html com status 404 de verdade.
 
 # Fotos e arquivos do site: cache longo (os nomes dos arquivos de código mudam a cada versão)
 [[headers]]

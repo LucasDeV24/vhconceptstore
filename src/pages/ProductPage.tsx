@@ -191,7 +191,7 @@ export default function ProductPage() {
 
           <div className={`pdp-stock ${esgotado ? "is-out" : p.estoque <= 2 ? "is-low" : ""}`}>
             <i />
-            {esgotado ? "Esgotado no momento" : p.sobConsulta ? "Chegou agora: consulte disponibilidade" : "Disponível"}
+            {esgotado ? "Esgotado no momento" : p.sobConsulta ? "Chegou agora: consulte disponibilidade" : "Consulte a disponibilidade"}
           </div>
 
           {p.sobConsulta ? (

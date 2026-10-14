@@ -162,4 +162,36 @@ async function trabalhador() {
   }
 }
 await Promise.all(Array.from({ length: 4 }, trabalhador));
+// ---- páginas do site (sem "/*" -> 200, o Netlify devolve 404 de verdade para endereços que não existem) ----
+const ROTAS = {
+  loja: "iPhones lacrados e seminovos",
+  troca: "Troque seu iPhone",
+  garantia: "Garantia",
+  suporte: "Suporte",
+  "trocas-e-devolucoes": "Trocas e devoluções",
+  privacidade: "Privacidade",
+  termos: "Termos de uso",
+  favoritos: "Favoritos",
+  conta: "Minha conta",
+};
+const semIndexar = (html) => html.replace("</head>", '    <meta name="robots" content="noindex" />\n  </head>');
+const trocaTitulo = (html, t) => html.replace(/<title>.*?<\/title>/s, `<title>${xml(t)}</title>`);
+for (const [rota, titulo] of Object.entries(ROTAS)) {
+  const html = trocaTitulo(base, `${titulo} | ${LOJA.nome}`).replace(/<link rel="canonical"[^>]*>/, "");
+  await writeFile(path.join(DIST, `${rota}.html`), ["favoritos", "conta"].includes(rota) ? semIndexar(html) : html);
+}
+await writeFile(path.join(DIST, "404.html"), semIndexar(trocaTitulo(base, `Página não encontrada | ${LOJA.nome}`)));
+
+// ---- sitemap.xml e robots.txt ----
+const urls = [
+  "",
+  ...["loja", "troca", "garantia", "suporte", "trocas-e-devolucoes", "privacidade", "termos"],
+  ...PRODUTOS.map((p) => `produto/${p.id}`),
+].map((u) => `  <url><loc>${xml(`${SITE}${BASE}${u}`)}</loc></url>`);
+await writeFile(
+  path.join(DIST, "sitemap.xml"),
+  `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n${urls.join("\n")}\n</urlset>\n`,
+);
+await writeFile(path.join(DIST, "robots.txt"), `User-agent: *\nAllow: /\nDisallow: /favoritos\nDisallow: /conta\n\nSitemap: ${SITE}${BASE}sitemap.xml\n`);
+
 console.log(`Prévia de link (WhatsApp): ${feitos} páginas e imagens geradas em dist/ (endereço: ${SITE}${BASE})`);

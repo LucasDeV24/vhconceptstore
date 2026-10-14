@@ -5,7 +5,7 @@ const ITENS = [
   { ico: "revisado", t: "Testados e garantidos", s: "Lacrados e seminovos" },
   { ico: "escudo", t: "Alta qualidade", s: "Aparelhos selecionados" },
   { ico: "caminhao", t: "Envio para todo o Brasil", s: "Entrega em Volta Redonda e região" },
-  { ico: "cartao", t: `Parcele em até ${MAX_PARCELAS}x`, s: "No cartão, com juros da maquininha" },
+  { ico: "cartao", t: `Parcele em até ${MAX_PARCELAS}x`, s: "No cartão, com juros" },
   { ico: "pix", t: "Preço à vista", s: "PIX ou dinheiro" },
   { ico: "troca", t: "Seu usado na troca", s: "Avaliação pelo WhatsApp" },
 ];
