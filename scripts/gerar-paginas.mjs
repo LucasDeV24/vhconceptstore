@@ -4,7 +4,7 @@
  * O WhatsApp, o Instagram e o Google só leem o HTML inicial da página (não rodam o site). Por isso,
  * para o link de cada aparelho aparecer no WhatsApp com FOTO, NOME e PREÇO, este script gera:
  *   - dist/og/<produto>.jpg            imagem de compartilhamento (1200x630) com a foto do iPhone, nome e preço
- *   - dist/produto/<produto>/index.html  a mesma página do site, com as tags do cartão de prévia (Open Graph)
+ *   - dist/produto/<produto>.html      a mesma página do site, com as tags do cartão de prévia (Open Graph)
  *   - dist/og/home.jpg                 imagem da página inicial
  *
  * O endereço público vem de LOJA.site (src/data/conteudo.ts) ou da variável SITE_URL.
@@ -154,10 +154,10 @@ async function trabalhador() {
       ? `${condicao} · Chegou agora: consulte o valor no WhatsApp · Envio para todo o Brasil`
       : `${condicao} · À vista ${reais(p.preco)} ou ${p.parcelas.quantidade}x de ${reais2(p.parcelas.valor)} no cartão · Envio para todo o Brasil`;
     await writeFile(path.join(DIST, "og", `${p.id}.jpg`), await imagemProduto(p));
-    const dir = path.join(DIST, "produto", p.id);
-    await mkdir(dir, { recursive: true });
+    // produto/<id>.html: o endereço /produto/<id> abre direto, sem redirecionar para "/produto/<id>/"
+    await mkdir(path.join(DIST, "produto"), { recursive: true });
     const url = `${SITE}${BASE}produto/${p.id}`;
-    await writeFile(path.join(dir, "index.html"), comTags(titulo, descricao, { titulo, descricao, imagem: `${SITE}${BASE}og/${p.id}.jpg`, url }));
+    await writeFile(path.join(DIST, "produto", `${p.id}.html`), comTags(titulo, descricao, { titulo, descricao, imagem: `${SITE}${BASE}og/${p.id}.jpg`, url }));
     feitos++;
   }
 }

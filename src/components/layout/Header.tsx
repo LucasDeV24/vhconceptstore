@@ -14,7 +14,6 @@ export const MENU = [
   { rotulo: "Início", to: "/" },
   { rotulo: "iPhones Lacrados", to: "/loja?condicao=novo" },
   { rotulo: "iPhones Seminovos", to: "/loja?semi=1" },
-  { rotulo: "Acessórios", to: "/loja?categoria=acessorio" },
   { rotulo: "Ofertas", to: "/loja?ofertas=1", destaque: true },
   { rotulo: "Troque seu iPhone", to: "/troca" },
   { rotulo: "Garantia", to: "/garantia" },

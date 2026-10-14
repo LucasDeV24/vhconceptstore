@@ -27,7 +27,6 @@ export function Footer() {
               <h4>Loja</h4>
               <Link to="/loja?condicao=novo">iPhones lacrados</Link>
               <Link to="/loja?semi=1">iPhones seminovos</Link>
-              <Link to="/loja?categoria=acessorio">Acessórios</Link>
               <Link to="/troca">Troque seu iPhone</Link>
             </div>
             <div>

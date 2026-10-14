@@ -13,9 +13,6 @@ import { getModelo } from "./modelos";
 import { galeriaIphone } from "@/utils/fotos";
 import { MAX_PARCELAS, valorParcela } from "./parcelamento";
 
-const slug = (s: string) =>
-  s.normalize("NFD").replace(/[̀-ͯ]/g, "").toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/(^-|-$)/g, "");
-
 function seed(str: string) {
   let h = 2166136261;
   for (let i = 0; i < str.length; i++) h = Math.imul(h ^ str.charCodeAt(i), 16777619);
@@ -100,11 +97,6 @@ const SEMINOVOS: Linha[] = [
   { modelo: "iphone-13-pro-max", gb: "256GB", precos: 3200, cores: ["grafite"], peso: 280 },
   { modelo: "iphone-13-pro-max", gb: "128GB", precos: 2980, cores: ["grafite"], peso: 290 },
   { modelo: "iphone-13", gb: "128GB", precos: { rosa: 2050, vermelho: 2050, "meia-noite": 2050, estelar: 2099 }, peso: 330 },
-  { modelo: "iphone-12-pro-max", gb: "256GB", precos: 2499, cores: ["dourado"], peso: 200 },
-  { modelo: "iphone-12-pro", gb: "512GB", precos: 2150, cores: ["grafite", "azul-pacifico"], peso: 190 },
-  { modelo: "iphone-12-pro", gb: "256GB", precos: 2099, cores: ["grafite", "azul-pacifico"], peso: 195 },
-  { modelo: "iphone-12-pro", gb: "128GB", precos: 1999, cores: ["grafite"], peso: 200 },
-  { modelo: "iphone-12", gb: "256GB", precos: { roxo: 1899, verde: 1899, azul: 1899, vermelho: 1899, preto: 1899, branco: 1950 }, peso: 250 },
 ];
 
 const GARANTIA: Record<Condicao, number> = { novo: 12, seminovo: 3 };
@@ -150,55 +142,4 @@ function montar(linhas: Linha[], condicao: Condicao): Produto[] {
   });
 }
 
-// ---------------------------------------------------------------------------
-// ACESSÓRIOS: EXEMPLOS (não estão na tabela da loja). Edite ou remova.
-// ---------------------------------------------------------------------------
-interface DefAcc {
-  modelo: string;
-  nome: string;
-  cor: Cor;
-  preco: number;
-  garantia: number;
-  specs: Record<string, string>;
-  descricao: string;
-}
-
-const ACESSORIOS: DefAcc[] = [
-  { modelo: "capa", nome: "Capa de silicone com MagSafe", cor: { nome: "Azul-tempestade", hex: "#4A5B7A" }, preco: 249, garantia: 3,
-    specs: { Compatibilidade: "iPhone 15, 16 e 17", Material: "Silicone", MagSafe: "Sim" }, descricao: "Interior em microfibra, encaixe preciso e ímãs alinhados para MagSafe." },
-  { modelo: "carregador", nome: "Carregador USB-C 20W", cor: { nome: "Branco", hex: "#F5F5F2" }, preco: 169, garantia: 12,
-    specs: { Potência: "20W", Entrada: "USB-C", "Carga rápida": "50% em ~30 min" }, descricao: "Carregamento rápido para iPhones com USB-C ou Lightning." },
-  { modelo: "cabo", nome: "Cabo USB-C trançado 1m", cor: { nome: "Branco", hex: "#F5F5F2" }, preco: 129, garantia: 6,
-    specs: { Comprimento: "1 metro", Conectores: "USB-C / USB-C", Revestimento: "Trançado" }, descricao: "Revestimento trançado que não embola." },
-  { modelo: "pelicula", nome: "Película de vidro 3D", cor: { nome: "Transparente", hex: "#E6ECEF" }, preco: 79, garantia: 1,
-    specs: { Material: "Vidro temperado 9H", Cobertura: "Tela inteira", Aplicação: "Com gabarito" }, descricao: "Cobre a tela inteira e vem com gabarito para aplicar sem bolhas." },
-  { modelo: "magsafe", nome: "Carregador MagSafe", cor: { nome: "Branco", hex: "#F5F5F2" }, preco: 349, garantia: 12,
-    specs: { Potência: "Até 25W", Cabo: "1 metro USB-C", Compatibilidade: "iPhone 12 ao 18" }, descricao: "Encaixa magneticamente e carrega sem fio." },
-  { modelo: "fone", nome: "AirPods Pro (2ª geração)", cor: { nome: "Branco", hex: "#F5F5F2" }, preco: 1899, garantia: 12,
-    specs: { Cancelamento: "Ativo de ruído", Estojo: "USB-C com MagSafe", Bateria: "Até 6h por carga" }, descricao: "Cancelamento ativo de ruído, modo ambiente e áudio espacial." },
-];
-
-const acessorios: Produto[] = ACESSORIOS.map((a) => {
-  const id = `acessorio-${slug(a.nome)}`;
-  const r = seed(id);
-  return {
-    id,
-    nome: a.nome,
-    modelo: a.modelo,
-    categoria: "acessorio",
-    condicao: "novo",
-    cor: a.cor,
-    preco: a.preco,
-    precoPix: a.preco,
-    parcelas: { quantidade: MAX_PARCELAS, valor: valorParcela(a.preco, MAX_PARCELAS), semJuros: false },
-    garantia: a.garantia,
-    estoque: Math.floor(5 + r * 30),
-    imagens: [{ tipo: "ilustracao", legenda: "Produto" }, { tipo: "ilustracao", legenda: "Detalhe" }],
-    descricao: a.descricao,
-    especificacoes: a.specs,
-    vendidos: Math.floor(r * 100),
-    lancamento: 2024,
-  };
-});
-
-export const PRODUTOS: Produto[] = [...montar(LACRADOS, "novo"), ...montar(SEMINOVOS, "seminovo"), ...acessorios];
+export const PRODUTOS: Produto[] = [...montar(LACRADOS, "novo"), ...montar(SEMINOVOS, "seminovo")];

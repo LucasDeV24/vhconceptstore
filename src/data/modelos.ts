@@ -1,4 +1,4 @@
-import type { Cor, Modelo } from "@/types";
+import type { Modelo } from "@/types";
 import { CORES } from "./cores";
 
 /**
@@ -29,25 +29,10 @@ const DEFS: Def[] = [
   { id: "iphone-14-pro-max", nome: "iPhone 14 Pro Max", linha: "14", ano: 2022, tela: 6.7, painel: "OLED ProMotion 120Hz", chip: "A16 Bionic", camera: "Tripla 48MP, zoom 3x", qtdCameras: 3, bateriaVideo: 29, conector: "Lightning", cincoG: true, dynamicIsland: true },
   { id: "iphone-14-plus", nome: "iPhone 14 Plus", linha: "14", ano: 2022, tela: 6.7, painel: "OLED Super Retina XDR", chip: "A15 Bionic", camera: "Dupla 12MP", qtdCameras: 2, bateriaVideo: 26, conector: "Lightning", cincoG: true, dynamicIsland: false },
   { id: "iphone-13-pro-max", nome: "iPhone 13 Pro Max", linha: "13", ano: 2021, tela: 6.7, painel: "OLED ProMotion 120Hz", chip: "A15 Bionic", camera: "Tripla 12MP, zoom 3x", qtdCameras: 3, bateriaVideo: 28, conector: "Lightning", cincoG: true, dynamicIsland: false },
-  { id: "iphone-12-pro-max", nome: "iPhone 12 Pro Max", linha: "12", ano: 2020, tela: 6.7, painel: "OLED Super Retina XDR", chip: "A14 Bionic", camera: "Tripla 12MP, zoom 2,5x", qtdCameras: 3, bateriaVideo: 20, conector: "Lightning", cincoG: true, dynamicIsland: false },
-  { id: "iphone-12-pro", nome: "iPhone 12 Pro", linha: "12", ano: 2020, tela: 6.1, painel: "OLED Super Retina XDR", chip: "A14 Bionic", camera: "Tripla 12MP, zoom 2x", qtdCameras: 3, bateriaVideo: 17, conector: "Lightning", cincoG: true, dynamicIsland: false },
-  { id: "iphone-12", nome: "iPhone 12", linha: "12", ano: 2020, tela: 6.1, painel: "OLED Super Retina XDR", chip: "A14 Bionic", camera: "Dupla 12MP", qtdCameras: 2, bateriaVideo: 17, conector: "Lightning", cincoG: true, dynamicIsland: false },
   { id: "iphone-11", nome: "iPhone 11", linha: "11", ano: 2019, tela: 6.1, painel: "LCD Liquid Retina", chip: "A13 Bionic", camera: "Dupla 12MP", qtdCameras: 2, bateriaVideo: 17, conector: "Lightning", cincoG: false, dynamicIsland: false },
 ];
 
-/** Sem foto oficial da Apple disponível: o site mostra o quadro "Foto em breve" até você enviar fotos. */
-const SEM_FOTO: Record<string, Cor[]> = {
-  "iphone-12-pro-max": [
-    { nome: "Dourado", slug: "dourado", hex: "#E3C9A5" }, { nome: "Grafite", slug: "grafite", hex: "#54524F" },
-    { nome: "Azul-pacífico", slug: "azul-pacifico", hex: "#2E4A5F" }, { nome: "Prateado", slug: "prateado", hex: "#E3E3E0" },
-  ],
-  "iphone-12-pro": [
-    { nome: "Grafite", slug: "grafite", hex: "#54524F" }, { nome: "Azul-pacífico", slug: "azul-pacifico", hex: "#2E4A5F" },
-    { nome: "Dourado", slug: "dourado", hex: "#E3C9A5" }, { nome: "Prateado", slug: "prateado", hex: "#E3E3E0" },
-  ],
-};
-
-export const MODELOS: Modelo[] = DEFS.map((d) => ({ ...d, cores: CORES[d.id] ?? SEM_FOTO[d.id] }));
+export const MODELOS: Modelo[] = DEFS.map((d) => ({ ...d, cores: CORES[d.id] }));
 
 export const getModelo = (id: string) => MODELOS.find((m) => m.id === id);
 export const LINHAS = ["18", "17", "16", "15", "14", "13", "12", "11"];

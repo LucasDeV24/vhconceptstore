@@ -2,7 +2,6 @@ import { Link } from "react-router-dom";
 import type { Produto } from "@/types";
 import { api } from "@/services/api";
 import { getModelo } from "@/data/modelos";
-import { AccessoryArt } from "@/components/product/AccessoryArt";
 import { urlFoto } from "@/utils/fotos";
 import { brl } from "@/utils/format";
 
@@ -28,7 +27,6 @@ const ATALHOS: Atalho[] = [
   { rotulo: "iPhone 15", to: "/loja?linha=15", foto: ["iphone-15", "rosa"], filtro: linha("15") },
   { rotulo: "iPhone 14", to: "/loja?linha=14", foto: ["iphone-14-pro", "roxo-profundo"], filtro: linha("14") },
   { rotulo: "iPhone 13", to: "/loja?linha=13", foto: ["iphone-13", "azul"], filtro: linha("13") },
-  { rotulo: "iPhone 12", to: "/loja?linha=12", foto: ["iphone-12", "roxo"], filtro: linha("12") },
   { rotulo: "Seminovos", to: "/loja?semi=1", foto: ["iphone-16-pro", "titanio-deserto"], filtro: (p) => p.condicao === "seminovo", tag: "Garantia" },
 ];
 
@@ -48,11 +46,6 @@ export function CategoryShortcuts() {
           </Link>
         );
       })}
-      <Link to="/loja?categoria=acessorio" className="cat">
-        <span className="cat-art cat-art--acc"><AccessoryArt tipo="capa" cor="#4A5B7A" /></span>
-        <b>Acessórios</b>
-        <small>{aPartirDe(menorPreco((p) => p.categoria === "acessorio"))}</small>
-      </Link>
     </nav>
   );
 }

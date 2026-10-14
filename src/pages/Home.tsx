@@ -14,7 +14,6 @@ export default function Home() {
   const iphones = produtos.filter((p) => p.categoria === "iphone");
   const novos = iphones.filter((p) => p.condicao === "novo");
   const semis = iphones.filter((p) => p.condicao !== "novo");
-  const acessorios = produtos.filter((p) => p.categoria === "acessorio");
 
   return (
     <>
@@ -38,11 +37,6 @@ export default function Home() {
           />
           <ProductGrid produtos={semis} carregando={carregando} limite={8} />
         </div>
-      </section>
-
-      <section className="sec wrap">
-        <SectionHead titulo="Acessórios para seu iPhone" link={{ to: "/loja?categoria=acessorio", rotulo: "Ver acessórios" }} />
-        <ProductGrid produtos={acessorios} carregando={carregando} limite={4} />
       </section>
 
       <Compare />
