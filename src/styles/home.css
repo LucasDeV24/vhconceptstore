@@ -41,7 +41,7 @@
 .hero-semi p { color: #bdbab2; font-size: 0.92rem; }
 .hero-semi-from { display: block; margin-top: 20px; font-size: 0.85rem; color: #bdbab2; }
 .hero-semi-from b { display: block; font-family: var(--f-display); font-size: 1.7rem; color: var(--ink); letter-spacing: -0.03em; }
-.hero-semi-art { position: absolute; right: -24px; bottom: -40px; height: 300px; width: auto; transform: rotate(10deg); filter: drop-shadow(0 22px 30px rgba(0, 0, 0, 0.6)); transition: transform 0.6s var(--ease); }
+.hero-semi-art { position: absolute; right: 6px; bottom: -34px; height: 262px; width: auto; transform: rotate(10deg); filter: drop-shadow(0 22px 30px rgba(0, 0, 0, 0.6)); transition: transform 0.6s var(--ease); }
 .hero-semi:hover .hero-semi-art { transform: rotate(10deg) translateY(-8px); }
 .round-arrow { position: absolute; left: 32px; bottom: 28px; width: 44px; height: 44px; border-radius: 50%; background: var(--accent); color: var(--ink); display: grid; place-items: center; transition: transform 0.3s var(--ease); }
 .hero-semi:hover .round-arrow { transform: rotate(-45deg); }
@@ -191,7 +191,7 @@
   .hero-side { grid-template-columns: 1fr; }
   .hero-semi { min-height: 220px; padding: 24px; }
   .hero-semi h2 { font-size: 1.45rem; }
-  .hero-semi-art { height: 230px; width: auto; }
+  .hero-semi-art { height: 200px; width: auto; }
   .round-arrow { left: auto; right: 20px; bottom: 20px; }
   .cats { grid-template-columns: repeat(7, 112px); gap: 10px; width: 100%; padding-inline: 14px; scroll-padding-inline: 14px; }
   .cat-art { height: 108px; }
