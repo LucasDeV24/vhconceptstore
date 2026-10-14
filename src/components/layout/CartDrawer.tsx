@@ -9,7 +9,7 @@ import { brl, brlCentavos, plural } from "@/utils/format";
 import { abrirWhatsApp, mensagemPedido } from "@/services/whatsapp";
 
 export function CartDrawer() {
-  const { linhas, subtotal, valorParcela, quantidadeTotal, maxParcelas, alterarQuantidade, remover } = useCart();
+  const { linhas, subtotal, quantidadeTotal, maxParcelas, alterarQuantidade, remover } = useCart();
   const { carrinhoAberto, fecharCarrinho, avisar } = useUI();
 
   useEffect(() => {
@@ -20,7 +20,7 @@ export function CartDrawer() {
   }, [carrinhoAberto, fecharCarrinho]);
 
   const finalizar = () => {
-    abrirWhatsApp(mensagemPedido(linhas, subtotal, valorParcela, maxParcelas));
+    abrirWhatsApp(mensagemPedido(linhas, subtotal, maxParcelas));
     avisar("Abrindo o WhatsApp", "Seu pedido já vai escrito na conversa.");
   };
 
@@ -81,7 +81,7 @@ export function CartDrawer() {
                   <span className="muted">Total à vista</span>
                   <b>{brlCentavos(subtotal)}</b>
                 </div>
-                <small className="muted">ou em até {maxParcelas}x de {brlCentavos(valorParcela)} no cartão (com juros)</small>
+                <small className="muted">ou em até {maxParcelas}x no cartão (com juros)</small>
               </div>
               <button type="button" className="btn btn-wpp btn-block btn-lg" onClick={finalizar}>
                 <Icon nome="whatsapp" tamanho={20} /> Finalizar pelo WhatsApp

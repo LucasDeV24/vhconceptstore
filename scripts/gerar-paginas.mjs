@@ -48,7 +48,7 @@ async function imagemProduto(p) {
        <text x="64" y="522" font-size="28" fill="#bdb7a6">Chame no WhatsApp</text>`
     : `<text x="64" y="430" font-size="20" font-weight="700" letter-spacing="4" fill="#ecd48a">À VISTA</text>
        <text x="64" y="508" font-size="88" font-weight="800" fill="#ffffff" letter-spacing="-2">${xml(reais(p.preco))}</text>
-       <text x="64" y="560" font-size="29" fill="#cfc9ba">ou ${p.parcelas.quantidade}x de <tspan font-weight="700" fill="#ffffff">${xml(reais2(p.parcelas.valor))}</tspan> no cartão</text>`;
+       <text x="64" y="560" font-size="29" fill="#cfc9ba">ou em até <tspan font-weight="700" fill="#ffffff">${p.parcelas.quantidade}x</tspan> com juros</text>`;
 
   const svg = `<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630" font-family="Arial, Helvetica, sans-serif">
     <defs>
@@ -152,7 +152,7 @@ async function trabalhador() {
     const titulo = p.sobConsulta ? `${nomeCompleto} | VH Concept Store` : `${nomeCompleto} por ${reais(p.preco)} à vista | VH Concept Store`;
     const descricao = p.sobConsulta
       ? `${condicao} · Chegou agora: consulte o valor no WhatsApp · Envio para todo o Brasil`
-      : `${condicao} · À vista ${reais(p.preco)} ou ${p.parcelas.quantidade}x de ${reais2(p.parcelas.valor)} no cartão · Envio para todo o Brasil`;
+      : `${condicao} · À vista ${reais(p.preco)} ou em até ${p.parcelas.quantidade}x com juros · Envio para todo o Brasil`;
     await writeFile(path.join(DIST, "og", `${p.id}.jpg`), await imagemProduto(p));
     // produto/<id>.html: o endereço /produto/<id> abre direto, sem redirecionar para "/produto/<id>/"
     await mkdir(path.join(DIST, "produto"), { recursive: true });

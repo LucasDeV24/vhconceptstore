@@ -1,5 +1,5 @@
 import type { Produto } from "@/types";
-import { brl, brlCentavos, descontoPct } from "@/utils/format";
+import { brl, descontoPct } from "@/utils/format";
 
 interface Props {
   produto: Produto;
@@ -29,10 +29,7 @@ export function PriceBlock({ produto: p, tamanho = "md" }: Props) {
       <div className="price-label">À vista</div>
       <div className="price-now">{brl(p.preco)}</div>
       <div className="price-inst">
-        ou em até {p.parcelas.quantidade}x de{" "}
-        <span className="nw">
-          <b>{brlCentavos(p.parcelas.valor)}</b> <span className="com-juros">com juros</span>
-        </span>
+        ou em até <b>{p.parcelas.quantidade}x</b> <span className="com-juros">com juros</span>
       </div>
     </div>
   );

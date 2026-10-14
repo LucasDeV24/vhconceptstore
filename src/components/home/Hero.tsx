@@ -4,7 +4,7 @@ import { api } from "@/services/api";
 import { getModelo } from "@/data/modelos";
 import { Icon } from "@/components/ui/Icon";
 import { urlFoto } from "@/utils/fotos";
-import { brl, brlCentavos } from "@/utils/format";
+import { brl } from "@/utils/format";
 import { useComprar } from "@/hooks/useComprar";
 
 const MODELO_HERO = "iphone-17-pro";
@@ -33,7 +33,7 @@ export function Hero() {
           <div className="hero-price">
             <div className="hero-was">À vista</div>
             <div className="hero-now">{brl(p.preco)}</div>
-            <div className="hero-inst">ou em até {p.parcelas.quantidade}x de <b>{brlCentavos(p.parcelas.valor)}</b> <span className="com-juros">com juros</span></div>
+            <div className="hero-inst">ou em até <b>{p.parcelas.quantidade}x</b> <span className="com-juros">com juros</span></div>
           </div>
 
           <div className="hero-cta">

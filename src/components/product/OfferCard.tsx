@@ -3,7 +3,7 @@ import type { Produto } from "@/types";
 import { ProductImage } from "./ProductImage";
 import { GradeBadge } from "./GradeBadge";
 import { Icon } from "@/components/ui/Icon";
-import { brl, brlCentavos, descontoPct } from "@/utils/format";
+import { brl, descontoPct } from "@/utils/format";
 import { useComprar } from "@/hooks/useComprar";
 
 export function OfferCard({ produto: p, destaque }: { produto: Produto; destaque?: boolean }) {
@@ -30,7 +30,7 @@ export function OfferCard({ produto: p, destaque }: { produto: Produto; destaque
             <small>por</small> {brl(p.preco)}
           </span>
           <span className="muted">
-            à vista · ou {p.parcelas.quantidade}x de {brlCentavos(p.parcelas.valor)} com juros
+            à vista · ou em até {p.parcelas.quantidade}x com juros
           </span>
         </div>
         <button type="button" className="btn btn-accent" onClick={() => comprar(p, { abrir: true })} disabled={p.estoque < 1}>

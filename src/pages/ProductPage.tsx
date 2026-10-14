@@ -12,11 +12,10 @@ import { Gallery } from "@/components/product/Gallery";
 import { PriceBlock } from "@/components/product/PriceBlock";
 import { GradeBadge } from "@/components/product/GradeBadge";
 import { FavButton } from "@/components/product/FavButton";
-import { Parcelamento } from "@/components/product/Parcelamento";
 import { ProductGrid } from "@/components/product/ProductGrid";
 import { Estrelas, Icon } from "@/components/ui/Icon";
 import { SectionHead } from "@/components/ui/SectionHead";
-import { brl, brlCentavos } from "@/utils/format";
+import { brl } from "@/utils/format";
 import type { Armazenamento, Produto } from "@/types";
 
 const ORDEM_GB: Armazenamento[] = ["64GB", "128GB", "256GB", "512GB", "1TB"];
@@ -186,7 +185,6 @@ export default function ProductPage() {
 
           <div className="pdp-price">
             <PriceBlock produto={p} tamanho="lg" />
-            {!p.sobConsulta && <Parcelamento preco={p.preco} />}
           </div>
 
           <Seletores p={p} />
@@ -255,7 +253,7 @@ export default function ProductPage() {
       <div className="buybar">
         <div>
           <b>{p.sobConsulta ? "Consulte o valor" : brl(p.preco)}</b>
-          <small>{p.sobConsulta ? "chegou agora" : `à vista · ${p.parcelas.quantidade}x de ${brlCentavos(p.parcelas.valor)}`}</small>
+          <small>{p.sobConsulta ? "chegou agora" : `à vista · ou em até ${p.parcelas.quantidade}x com juros`}</small>
         </div>
         <button type="button" className="btn btn-dark" disabled={esgotado} onClick={() => comprar(p, { direto: true, quantidade: qtd })}>
           {esgotado ? "Esgotado" : p.sobConsulta ? "Consultar" : "Comprar agora"}

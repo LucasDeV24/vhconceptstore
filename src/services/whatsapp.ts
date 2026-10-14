@@ -1,6 +1,6 @@
 import { LOJA, CONDICOES } from "@/data/conteudo";
 import type { Produto } from "@/types";
-import { brl, brlCentavos } from "@/utils/format";
+import { brl } from "@/utils/format";
 
 /** Link do WhatsApp da loja com a mensagem já escrita (wa.me/NÚMERO?text=...). */
 export function linkWhatsApp(mensagem = "Olá! Vim pelo site da VH Concept Store.") {
@@ -24,13 +24,13 @@ export function descreverProduto(p: Produto) {
 export function mensagemInteresse(p: Produto, quantidade = 1) {
   const linhas = [`Olá! Tenho interesse neste ${p.categoria === "acessorio" ? "produto" : "iPhone"}:`, "", `📱 ${quantidade > 1 ? `${quantidade}x ` : ""}${descreverProduto(p)}`];
   if (!p.sobConsulta) {
-    linhas.push(`💰 À vista: ${brl(p.preco)}`, `💳 Ou em até ${p.parcelas.quantidade}x de ${brlCentavos(p.parcelas.valor)} no cartão (com juros)`);
+    linhas.push(`💰 À vista: ${brl(p.preco)}`, `💳 Ou em até ${p.parcelas.quantidade}x no cartão (com juros)`);
   }
   linhas.push("", p.sobConsulta ? "Qual o valor e a disponibilidade?" : "Ainda está disponível?", "", urlDoProduto(p.id));
   return linhas.join("\n");
 }
 
-export function mensagemPedido(itens: { produto: Produto; quantidade: number }[], total: number, parcela: number, n: number) {
+export function mensagemPedido(itens: { produto: Produto; quantidade: number }[], total: number, n: number) {
   const linhas = itens.flatMap(({ produto, quantidade }) => [
     `📱 ${quantidade}x ${descreverProduto(produto)} — ${brl(produto.preco)} à vista`,
     urlDoProduto(produto.id),
@@ -42,6 +42,6 @@ export function mensagemPedido(itens: { produto: Produto; quantidade: number }[]
     ...linhas,
     "",
     `💰 Total à vista: ${brl(total)}`,
-    `💳 Ou em até ${n}x de ${brlCentavos(parcela)} no cartão (com juros da maquininha)`,
+    `💳 Ou em até ${n}x no cartão (com juros da maquininha)`,
   ].join("\n");
 }

@@ -20,7 +20,7 @@ export const FAQ = [
   { p: "Os iPhones seminovos têm garantia?", r: "Sim. Nossos aparelhos são testados e garantidos. O prazo é combinado com você no WhatsApp antes de fechar." },
   { p: "Qual a diferença entre lacrado e seminovo?", r: "Lacrado é novo, na caixa fechada. Seminovo já teve dono, foi testado e por isso sai por um preço menor. O site mostra os dois, bem separados." },
   { p: "Posso ver fotos e a bateria do seminovo?", r: "Pode. Chame no WhatsApp e peça as fotos reais e a saúde da bateria do aparelho que você escolheu." },
-  { p: "Posso parcelar?", r: "Sim, em até 18x no cartão, com juros da maquininha de 1,59% por parcela, desde a 1ª parcela. O preço do site é à vista (PIX ou dinheiro), sem juros. Na página de cada aparelho tem a tabela de 1x a 18x." },
+  { p: "Posso parcelar?", r: "Sim, em até 18x no cartão, com juros. O preço do site é à vista (PIX ou dinheiro), sem juros. Chame no WhatsApp para simular as parcelas." },
   { p: "Vocês aceitam meu iPhone usado?", r: "Aceitamos. Faça uma simulação na seção Troque seu iPhone e a gente confirma o valor ao avaliar o aparelho." },
   { p: "Vocês enviam para todo o Brasil?", r: "Enviamos. Em Volta Redonda e região, combinamos entrega ou retirada." },
 ];
