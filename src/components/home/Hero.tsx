@@ -18,7 +18,8 @@ export function Hero() {
   const p = api.produtoPorId(`${MODELO_HERO}-novo-${GB_HERO.toLowerCase()}-${cor.slug}`)!;
   const comprar = useComprar();
   const semiMenor = Math.min(...api.todos().filter((x) => x.condicao === "seminovo").map((x) => x.preco));
-  const modeloSemi = getModelo("iphone-17-pro")!;
+  const modeloSemi = getModelo("iphone-13")!;
+  const corSemi = modeloSemi.cores.find((c) => c.slug === "azul") ?? modeloSemi.cores[0];
 
   return (
     <section className="hero wrap">
@@ -87,7 +88,7 @@ export function Hero() {
               a partir de <b>{brl(semiMenor)}</b>
             </span>
           </div>
-          <img className="hero-semi-art" src={urlFoto(modeloSemi.id, modeloSemi.cores[0])} alt="" loading="eager" decoding="async" />
+          <img className="hero-semi-art" src={urlFoto(modeloSemi.id, corSemi)} alt="" loading="eager" decoding="async" />
           <span className="round-arrow"><Icon nome="seta" tamanho={18} /></span>
         </Link>
 
