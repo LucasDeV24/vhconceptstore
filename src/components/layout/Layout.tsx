@@ -4,6 +4,7 @@ import { Header } from "./Header";
 import { Footer } from "./Footer";
 import { CartDrawer } from "./CartDrawer";
 import { Toast } from "./Toast";
+import { iniciarAnalytics, registrarVisita } from "@/utils/analytics";
 
 export function Layout() {
   const { pathname, state } = useLocation();
@@ -11,6 +12,11 @@ export function Layout() {
   useEffect(() => {
     if (!manterScroll) window.scrollTo({ top: 0 });
   }, [pathname]); // eslint-disable-line react-hooks/exhaustive-deps
+
+  useEffect(iniciarAnalytics, []);
+  useEffect(() => {
+    registrarVisita(pathname);
+  }, [pathname]);
 
   return (
     <>

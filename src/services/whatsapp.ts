@@ -1,6 +1,7 @@
 import { LOJA, CONDICOES } from "@/data/conteudo";
 import type { Produto } from "@/types";
 import { brl } from "@/utils/format";
+import { registrarWhatsApp } from "@/utils/analytics";
 
 /** Link do WhatsApp da loja com a mensagem já escrita (wa.me/NÚMERO?text=...). */
 export function linkWhatsApp(mensagem = "Olá! Vim pelo site da VH Concept Store.") {
@@ -9,6 +10,7 @@ export function linkWhatsApp(mensagem = "Olá! Vim pelo site da VH Concept Store
 
 /** Abre o WhatsApp da loja com a mensagem pronta. Precisa ser chamado direto de um clique (senão o navegador bloqueia). */
 export function abrirWhatsApp(mensagem: string) {
+  registrarWhatsApp();
   window.open(linkWhatsApp(mensagem), "_blank", "noopener");
 }
 
